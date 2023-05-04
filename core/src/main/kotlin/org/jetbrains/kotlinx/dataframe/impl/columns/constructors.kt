@@ -223,6 +223,7 @@ internal fun <T> guessColumnType(
                     is AnyFrame -> it
                     is AnyRow -> it.toDataFrame()
                     is List<*> -> (it as List<AnyRow>).toDataFrame()
+                    is Iterable<*> -> (it as Iterable<AnyRow>).toDataFrame()
                     else -> throw IllegalStateException()
                 }
             }

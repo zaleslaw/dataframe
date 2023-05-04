@@ -39,7 +39,8 @@ internal fun <T> DataFrame<T>.explodeImpl(dropEmpty: Boolean = true, columns: Co
         columns.maxOf {
             val n = when (val value = it.data[row]) {
                 is AnyFrame -> value.nrow
-                is List<*> -> value.size
+                is Iterable<*> -> value.count()
+                is Array<*> -> value.size
                 else -> 1
             }
             if (!dropEmpty && n == 0) 1

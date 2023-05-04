@@ -14,6 +14,14 @@ class ExplodeTests {
     }
 
     @Test
+    fun `explode into set`() {
+        val df = dataFrameOf("a" to setOf(1), "b" to setOf(setOf(2, 3)))
+        val exploded = df.explode { "b" into "c" }
+        val expected = dataFrameOf("a" to setOf(1, 1), "c" to setOf(2, 3))
+        exploded shouldBe expected
+    }
+
+    @Test
     fun `explode list and duplicate value`() {
         val exploded = dataFrameOf("a", "b")(1, listOf(2, 3)).explode()
         exploded shouldBe dataFrameOf("a", "b")(1, 2, 1, 3)

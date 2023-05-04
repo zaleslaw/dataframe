@@ -222,7 +222,7 @@ public inline fun <reified C> dataFrameOf(vararg header: String, fill: (String) 
 
 public fun dataFrameOf(header: Iterable<String>): DataFrameBuilder = DataFrameBuilder(header.asList())
 
-public fun dataFrameOf(vararg columns: Pair<String, List<Any?>>): AnyFrame =
+public fun dataFrameOf(vararg columns: Pair<String, Iterable<Any?>>): AnyFrame =
     columns.map { it.second.toColumn(it.first, Infer.Type) }.toDataFrame()
 
 public fun dataFrameOf(header: Iterable<String>, values: Iterable<Any?>): AnyFrame =
