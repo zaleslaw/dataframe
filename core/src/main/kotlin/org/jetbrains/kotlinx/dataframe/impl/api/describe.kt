@@ -83,4 +83,3 @@ private fun buildTypeName(it: AnyCol): String {
         rawJavaType
     }
 }
-
